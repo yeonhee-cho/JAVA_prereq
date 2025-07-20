@@ -102,7 +102,7 @@ public class C05LoopStatements {
         // 지역 변수를 재선언하는 것은 불가능
         // int num = 20;
         
-        // for문 안에서 선언된 i값은 해당 for문 밖에 다른 for문에서는 인지하지 못하기 때문에 편리하게 계속해서 int i를 재선언 가능하다.
+        // for문 안에서 선언된 i값은 해당 for문 밖에 다른 for 문에서는 인지하지 못하기 때문에 편리하게 계속해서 int i를 재선언 가능하다.
         for (int i = 0; i < 10; i++) {
             System.out.println(i);
         }
@@ -111,10 +111,41 @@ public class C05LoopStatements {
             System.out.println(i);
         }
 
-        // for문 안에서의 for문 i는 재선언 안됨!
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 6; j++) {
+        // 전체 구구단(2-9단까지) 출력
+        // for문 안의 for 문에서는 바깥의 for 문의 변수를 인지할 수 있으므로, 같은 변수를 재선언하는게 불가능
+        for (int i = 2; i < 10; i++) {
+            for (int j = 1; j < 10; j++) {
+                System.out.println(i + "X" + j + "=" + (i * j));
+            }
+        }
+        
+        // 라벨문
+        outloop:
+        for (int i = 0; i < 5; i++) {
+            innerloop:
+            for (int j = 0; j < 5; j++) {
+                System.out.println("i : " + i + ", j : "+ j);
 
+                if(j > 2){
+                    // 별도의 라벨문 없이 break 문이 있을 경우에는 가장 가까운 곳의 본인이 속한 for 문을 종료시키는 것.
+                    break outloop;
+                }
+            }
+        }
+
+
+        // 라벨문 활용
+        int[][] matrix = {{1,2,3,4,17},{6,17,8,9,10},{11,12,13,14,15},{16,17,18,19,20}};
+        // 17이 들어 있는 가장 첫 번째 matrix 값만 출력해주기
+        int target = 17;
+        firstloop:
+        for (int i = 0; i < matrix.length ; i++) {
+            secondloop:
+            for (int j = 0; j < matrix[i].length; j++) {
+                if(matrix[i][j] == target){
+                    System.out.println("i : " + i + ", j : " + j);
+                    break firstloop;
+                }
             }
         }
     }
@@ -184,4 +215,28 @@ public class C05LoopStatements {
 *   - 지역 변수 : {}로 구분되는 영역에서만 유효한 변수
 *       - 현재 단계에서는 {}열고, 닫는 영역까지만 변수의 범위가 유효하다는 것 숙지
 *   - 전역 변수 : 클래스 전역에 접근할 수 있는 변수
+*/
+
+/*
+* 다중 반복문
+*   - 반복문 안에 반복문이 들어가 있는 형태, 2중 뿐만 아니라 3중, 4중 등 다중 반복문도 많이 사용
+*   - 구구단 예제
+*       - 2중 for 문
+*           - 2단 ~ 9단이 반복되고, 각 단 별로 1 ~ 9 숫자가 반복되어야 하니 총 8 * 9 = 72가 반복
+*       - while 문 for 문의 혼합 등
+*           - while 문과 for 문을 섞어 계속적으로 입력 가능한 구구단 프로그램 만들기
+*   - 라벨문
+*       - 2개 이상의 반복문 내에서 특정 반복문에 이름을 붙이는 것을 라벨링이라 하고, 해당 라벨링 된 라벨문을 특정하여 break 종료시키는 목적으로 주로 사용
+*/
+
+/*
+* TODO 문제 사이트 들어가서 문제 풀어 볼 것!!
+* 프로그래머스
+* https://school.programmers.co.kr/learn/KDT?utm_source=google&utm_medium=DA&utm_campaign=school_KDT_DA_conv&utm_content=inmarket_KDT_pmax02&gad_source=1&gad_campaignid=22681436564&gbraid=0AAAAAC_c4nAE8jwafOUmMinB_9y0g8_LG&gclid=CjwKCAjwp_LDBhBCEiwAK7FnkgIog2ZW_Eaz173CeONhlhWQNQCWhjMbFSdnyugFYdKggnf3x2vDihoCEKoQAvD_BwE
+*
+* LeetCode
+* https://leetcode.com/
+*
+* 백준
+* https://www.acmicpc.net/
 */
