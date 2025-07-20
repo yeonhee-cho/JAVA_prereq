@@ -7,12 +7,12 @@
 <br>
 <strong>[설치 내용]</strong><br>
 1. &nbsp;java 11 설치<br>
-&nbsp;&nbsp;https://www.oracle.com/java/technologies/downloads/#java11-windows
-   
-
+<p>&nbsp;&nbsp;&nbsp;&nbsp;https://www.oracle.com/java/technologies/downloads/#java11-windows</p>
 2. &nbsp;IDE설치 : intelliJ<br>
-&nbsp;&nbsp;- intelliJ download community<br>
-&nbsp;&nbsp;https://www.jetbrains.com/ko-kr/idea/download/?section=windows
+<p>
+&nbsp;&nbsp;&nbsp;- intelliJ download community<br>
+&nbsp;&nbsp;&nbsp;https://www.jetbrains.com/ko-kr/idea/download/?section=windows
+</p>
 <br>
 
 <strong>[폴더 생성명]</strong><br>
