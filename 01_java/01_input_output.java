@@ -17,7 +17,7 @@ public class C01InputOutput {
         System.out.println("숫자" + 3 + "과 문자열의 연결도 가능합니다.");
 
         // 입력
-        // JAVA에서 입력은 Scanner클래스를 많이 사용한다.
+        // Java 에서 입력은 Scanner 클래스를 많이 사용한다.
         Scanner sc = new Scanner(System.in);
         System.out.println("아무 문자열이나 입력해주세요.");
         /*
@@ -51,7 +51,7 @@ public class C01InputOutput {
 /*
 * [자바의 표준 입출력 클래스]
 * - 프로그램은 사용자의 입력(input)에 따른 출력(output)을 해주는 역할
-* - 자바에서는 System이라는 표준 입출력 클래스를 정의하여 제공
+* - 자바에서는 System 이라는 표준 입출력 클래스를 정의하여 제공
 * - 출력은 System.out
 *       - 사용자가 보는 모니터에 개발자가 요청한 내용을 컴퓨터가 출력
 *       - System.out.println();
