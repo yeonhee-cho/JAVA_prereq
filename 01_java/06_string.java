@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ public class C06String {
         System.out.println(st_a == st_b); // false
         System.out.println(st_a == st_c); // true
 
-        // Wrapper 클래스 : 기본형 타입에 없는 다양한 기능을 위해 참조형 자료인 wrapper클래스가 사용
+        // Wrapper 클래스 : 기본형 타입에 없는 다양한 기능을 위해 참조형 자료인 wrapper 클래스가 사용
         int a11 = 10;
         // 원칙적인 방법
         Integer int_a = new Integer(a11);
@@ -52,7 +53,7 @@ public class C06String {
         System.out.println(mySt == mySt2); // false
         System.out.println(mySt.equals(mySt2)); // true, 비교시 반드시 .equals!!
 
-        // indexOf : 몇 번째 index에 특정 문자열이 위치하는지 return해주는 함수(메서드)
+        // indexOf : 몇 번째 index에 특정 문자열이 위치하는지 return 해주는 함수(메서드)
         String a111 = "hello java";
         System.out.println(a111.indexOf("java")); // 6
 
@@ -112,6 +113,83 @@ public class C06String {
                 System.out.println("다시 입력해주세요.");
             }
         }
+
+        // substring(a,b) : a부터 b 미만까지 문자열 잘라내기
+        String st1 = "    Hello World  ";
+        System.out.println(st1.substring(0,5));
+
+        // 대소문자 변경
+        System.out.println(st1.toUpperCase()); // 전부 대문자로
+        System.out.println(st1.toLowerCase()); // 전부 소문자로
+
+        // trim()은 문자열 양 끝에 공백을 제거. strip도 마찬가지.
+        System.out.println(st1.trim());
+        System.out.println(st1.strip());
+
+        // split 기법
+        String a1111 = "a b c d";
+        String[] aArr = a1111.split(" "); // 공백을 기준으로 자르겠다., 규칙적일 경우
+        System.out.println(Arrays.toString(aArr));
+
+        String b111 = "a  b c   d";
+        // String[] bArr = b111.split(" "); // 불가, 불규칙 -> 정규 표현식을 활용해서 공백을 제거하고 배열로 잘라내기
+        String[] bArr = b111.split("\\s+"); // "\\s"는 공백문자를 의미하고 +를 넣음으로 여러개 공백도 모두 잘라낸다.
+        System.out.println(Arrays.toString(bArr));
+
+        // isEmpty 는 비어있는지 확인하는 함수
+        String nullString = null;
+        String emptyString = "";
+        System.out.println(nullString == null); // true
+        System.out.println(emptyString == null); // false
+
+        System.out.println(emptyString.length()); // 0
+        // null은 문자열이 아니므로 문자열의 메서드를 사용시에 에러가 발생 -> nullPointerException
+        // System.out.println(nullString.length()); // ?
+
+        // join
+        String[] strArr = {"Java", "Python", "C", "JavaScript"};
+        String myStr = String.join("   ", strArr); // join(사이에 넣어줄 값, 어레이)
+        System.out.println(myStr);
+
+        System.out.println(Arrays.toString(strArr)); // [Java, Python, C, JavaScript]
+
+        // String <-> int
+        String intSt = "123";
+        // Integer.toString과 parseInt가 가장 많이 사용된다.
+        int myInt = Integer.parseInt(intSt);
+        String intSt2 = Integer.toString(myInt);
+        String intSt3 = String.valueOf(myInt);
+
+        // 문자열 더하기
+        String firstStr = "hello";
+        String secondStr = " world";
+        String thirdStr = firstStr + secondStr;
+
+        // String 기본적으로 immutable 이기 때문에, 값을 더한 것이 아닌 재정의한 것이다. => 성능이 다소 떨어진다.
+        String result = "";
+        result += "hello";
+        result += " world";
+        System.out.println(result);
+
+        // String의 수정/추가를 위해 나온 별도의 클래스 -> StringBuffer,StringBuilder
+        // 이게 더 좋음
+        StringBuffer sb = new StringBuffer();
+        sb.append("hello");
+        sb.append(" world");
+        System.out.println(sb);
+        String myResult = sb.toString();
+        System.out.println(myResult);
+
+        // StringBuilder가 StringBuffer에 비해 성능이 더 좋음
+        // 다만, 멀티스레드 환경에서 thread-safe 하지 않는다.
+        // 스레드 : 작업의 주체
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append("hello");
+        sb2.append(" world");
+        String myResult2 = sb2.toString();
+        System.out.println(myResult2);
+
+        //
     }
 }
 
@@ -257,3 +335,30 @@ public class C06String {
  *          - 대체적으로 이 방식
  *          - toString은 Integer 외에 Character, Double, StringBuffer 등의 대부분이 Object 객체에 있는 메서드
  */
+/*
+* 자료형 - StringBuffer
+*  - StringBuffer는 문자열을 추가하거나 변경할 때 주로 사용하는 객체
+*  - 기본 문법
+*       - StringBuffer buf = new StringBuffer("hello");
+*       - buf.append("java") // 문자열 추가
+*       - buf.append("world") // 문자열 추가
+*       - String new_st = buf.toString(); // 새로운 String 문자열로 변환
+*  - String과 StringBuffer의 차이
+*       - String은 immutable, StringBuffer는 mutable
+*       - String은 +=을 사용해서 문자열을 추가가 가능하지만, 추가가 아닌 재선언인 것
+*       - 성능면에서 StringBuffer가 우수
+*  - 주요 메서드
+*       - append
+*           - append 메소드를 사용하여 계속해서 문자열을 추가
+*           - 문자열의 경우 +=를 통해 추가하는 것처럼 보이나, 추가가 아닌 재선언
+*       - insert
+*           - insert 메소드는 특정 n 번째 위치에 원하는 문자열을 삽입
+*           - sb.insert(5,"hello");
+*       - substring
+*           - String 자료형의 substring 메소드와 동일하게 사용
+*       - 그 외 상당한 메서드는 String과 동일
+*  - StringBuilder
+*       - StringBuilder와 같은 기능을 하는 객체로서 성능이 더 뛰어남
+*       - 그러나, 멀티스레드 상황에서 동기화 문제가 발생
+*           - StringBuffer Thread-Safe(내부적으로 동기화처리 - synchronized)
+*/
