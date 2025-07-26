@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class C08List {
     public static void main(String[] args) {
@@ -24,6 +22,35 @@ public class C08List {
         aList.add(30);
 
         System.out.println(aList);
+
+        // get(index)
+        System.out.println(aList.get(2));
+
+        // size
+        System.out.println(aList.size());
+
+        // remove : index로 remove (index가 기본!!!)
+        // aList.remove(10); // value로 remove도 가능, 하지만 value로 삭제하고 싶을 때 Integer.valueOf
+        aList.remove(Integer.valueOf(10));
+        System.out.println(aList);
+
+        List<String> bList = new ArrayList<>();
+        bList.add("A");
+        bList.add("B");
+        bList.add("C");
+        bList.add("D");
+        bList.remove("D"); // 문자는 괜찮지만 숫자로 할 때는 자바가 헷갈려하니까 valueof 써주기
+
+        // sort : 정렬 -> comparator.naturaOrder, comparator.reverseOrder
+        bList.sort(Comparator.naturalOrder());
+        System.out.println(bList);
+        bList.sort(Comparator.reverseOrder());
+        System.out.println(bList);
+        // 컬렉션프레임 워크의 sort 기능도 활용할 수 있다. 하지만 위에가 낫다
+        Collections.sort(bList); // 오름차순
+        System.out.println(bList);
+        Collections.sort(bList, Comparator.reverseOrder()); // 내림차순
+        System.out.println(bList);
     }
 }
 /*
