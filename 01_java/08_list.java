@@ -1,6 +1,29 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class C08List {
     public static void main(String[] args) {
+        ArrayList<String> pitch = new ArrayList<String>(); // 오른쪽 <> 안에 String은 생략 가능
 
+        // 리스트 선언 방법1
+        List<String> pitches = new ArrayList<>(); // 이게 많이 쓰임
+        pitches.add("123");
+        pitches.add("321");
+        System.out.println(pitches);
+
+        // 리스트 선언 방법2 -> 초기값을 세팅하고 시작할 경우
+        // List<String> pictches2 = new ArrayList<>(); // 배열처럼{}은 안됨
+        List<String> pictches2 = new ArrayList<>(List.of("123","321")); // 9에서 추가
+        List<String> pictches3 = new ArrayList<>(Arrays.asList("123","321")); // 이 방법이 더 좋음
+
+        // add
+        List<Integer> aList = new ArrayList<>();
+        aList.add(10); // 자동 형변환됨
+        aList.add(20);
+        aList.add(30);
+
+        System.out.println(aList);
     }
 }
 /*
@@ -31,4 +54,8 @@ public class C08List {
 *             뒷부분에서 ArrayList를 선언.
 *             그 이유와 의미에 대해선 추후 인터페이스에서 학습
 *           - ArrayList는 가장 많이 사용되는 List의 구현체
+*  - 리스트 초기값 생성
+*       - 빈 list 생성 후 add
+*           - List<String> pitches = new ArrayList<>(Arrays.asList("123","213","321"));
+*           - List<String> pitches = new ArrayList<>(List.of("123","213","321"));
 */
